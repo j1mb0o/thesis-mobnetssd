@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 import tflite_runtime.interpreter as tflite
 
-interpreter = tflite.Interpreter(model_path='mobilenet.tflite')
-
+# interpreter = tflite.Interpreter(model_path='mobilenet.tflite')
+interpreter = tflite.Interpreter(model_path='models/model-float16.tflite')
 data = np.ndarray(shape=(1, 320, 320, 3), dtype=np.float32)
 
 class_color = [(255, 0, 0),      #blue   bicycle
@@ -22,7 +22,7 @@ interpreter.allocate_tensors()
 input_index = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-cap = cv2.VideoCapture('video.mp4')
+cap = cv2.VideoCapture('videos/video.mp4')
 
 while cap.isOpened():
 
